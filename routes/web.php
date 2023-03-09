@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,16 +17,6 @@ Route::get('/','\App\Http\Controllers\HomeController@index');
 Route::get('/login', function () {
     return view('login');
 });
-
-Route::group(['prefix' => 'user'], function () {
-    Route::get('/detail',[HomeController::class,'detail_room'])->name('detail-room');
-});
-
-Route::get('/detail',[HomeController::class,'detail_room'])->name('detail-room');
-
-
-
-
 
 
 Route::group(['prefix' => 'admin'], function () {

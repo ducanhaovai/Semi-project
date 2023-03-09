@@ -11,9 +11,4 @@ class HomeController extends Controller
     {
         return view('index');
     }
-
-    public function detail_room()
-    {
-        return view('detail-room');
-    }
 }
