@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use \Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+=======
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+>>>>>>> HongPhuc
 
 class HomeController extends Controller
 {
@@ -16,15 +21,19 @@ class HomeController extends Controller
         return view('index');
     }
 
+<<<<<<< HEAD
     public function room()
     {
         return view('room');
     }
 
+=======
+>>>>>>> HongPhuc
     public function detail_room()
     {
         return view('detail-room');
     }
+<<<<<<< HEAD
 
     public function login()
     {
@@ -69,4 +78,6 @@ class HomeController extends Controller
             return redirect()->route('login');
         }
     }
+=======
+>>>>>>> HongPhuc
 }
