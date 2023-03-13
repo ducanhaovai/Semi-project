@@ -7,12 +7,12 @@
     <link rel="icon" type="image/png" href="/assets/img/favicon.png">
     <title>Music sorce</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="css/css/login.css" />
   </head>
   <body>
     <div class="container" id="container">
       <div class="form-container sign-up-container">
-        <form  action="" method="POST" enctype="multipart/form-data"> <!--chuyen sang phan login -->
+        <form  action="{{route('auth.register')}}" method="POST" enctype="multipart/form-data"> <!--chuyen sang phan login -->
           @csrf
           <div class="social-container">
               
@@ -25,7 +25,7 @@
         </form>
       </div>
       <div class="form-container sign-in-container">
-        <form action=""  method="POST" > <!-- chuyen sang phan dang ki-->
+        <form action="{{route('postLogin')}}"  method="POST" > <!-- chuyen sang phan dang ki-->
           @csrf
           <div class="social-container">
           

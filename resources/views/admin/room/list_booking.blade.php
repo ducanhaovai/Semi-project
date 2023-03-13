@@ -11,29 +11,29 @@
             <div class="table-responsive">
                 <a style="float: right; border: 1px solid #cccc; border-radius:5%; padding:5px; margin-bottom:5px" href="{{ route('admin.form') }}"><i class="fas fa-fw fa-plus"></i> Add New </a>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th style="width:10%">Image</th>
-                            <th>Price</th>
-                            <th>Address and Phone</th>
-                            <th>Description</th>
-                            <th>Action</th>
+                            <th>Customer</th>
+                            <th>Hotel</th>
+                            <th>Check-in date</th>
+                            <th>Check-out date</th>
                             
                         </tr>
                     </thead>
-                    @foreach($hotels as $hotel)
+                    @foreach($bookings as $booking)
                     <tbody>
                         
                         <tr>
-                            <td>{{$hotel->name}}</td>
+                            <td>{{$booking->id}}</td>
 
-                            <td ><img  src="{{ asset('images/product/' . $hotel->img) }}" alt="{{ $hotel->name }} " height="200"></td>
-                            <td>{{$hotel->price}}</td>
-                            <td>{{$hotel->address}}, {{$hotel->phone}}</td>
-                            <td>{{$hotel->des}}</td>
-                            <td><a href="{{ route('admin.detail',1) }}"><i class="fas fa-fw fa-eye"></i></a>
-                        <a><i class="fas fa-fw fa-pen"></i></a></td>
+                            <td ><img  src="" alt=" " height="200"></td>
+                            <td>{{ $booking->user->name }}</td>
+                            <td>$booking->hotel->name</td>
+                            <td>{{ $booking->checkin_date }}</td>
+                            <td>{{ $booking->checkout_date }}</td>
                         </tr>
                         
                         
