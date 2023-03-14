@@ -169,10 +169,10 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Tran Phuc</span>
-                <img class="img-profile rounded-circle"
-                    {{-- src="{{asset('admin/img/undraw_profile.svg')}}"> --}}
-                    src="https://scontent.fhan15-2.fna.fbcdn.net/v/t39.30808-6/328977946_549940616904408_3022056766241790854_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=N6EvSNJC0f8AX_HmjJp&tn=Obg-DVaASKHzywfn&_nc_ht=scontent.fhan15-2.fna&oh=00_AfBoCzHlsH3YYdRX3iZ4pOSj1Wg5BA1_4s7n2_LakTiQlA&oe=63F030AA">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
+                {{-- <img class="img-profile rounded-circle"
+                    src="{{asset('admin/img/undraw_profile.svg')}}">
+                    src="https://scontent.fhan15-2.fna.fbcdn.net/v/t39.30808-6/328977946_549940616904408_3022056766241790854_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=N6EvSNJC0f8AX_HmjJp&tn=Obg-DVaASKHzywfn&_nc_ht=scontent.fhan15-2.fna&oh=00_AfBoCzHlsH3YYdRX3iZ4pOSj1Wg5BA1_4s7n2_LakTiQlA&oe=63F030AA"> --}}
                     
             </a>
             <!-- Dropdown - User Information -->
@@ -191,10 +191,14 @@
                     Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                {{-- <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
-                </a>
+                </a> --}}
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                <a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
             </div>
         </li>
 

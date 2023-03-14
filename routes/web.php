@@ -31,7 +31,7 @@ Route::post('/register_url', [HomeController::class, 'store'])->name('auth.regis
 
 
 route::get('/hotels/{id}', [HomeController::class, 'detialRoom'])->name('hotel.detail');
-Route::get('/detail', [HomeController::class, 'detail_room'])->name('detail-room');
+
 Route::get('/hotel', [HomeController::class, 'hotel'])->name('hotel');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
@@ -48,13 +48,17 @@ Route::group(
         // Route::get("/", "TwoFaceAuthsController@index")->name("2fa_setting");
         Route::get('/index', '\App\Http\Controllers\Admin\AdminController@index')->name('admin.index');
         Route::get('/index1', '\App\Http\Controllers\Admin\BookingsController1@index')->name('admin.index1');
-        Route::post('/hotel/store', '\App\Http\Controllers\Admin\RoomController@store')->name('admin.store');
 
         Route::post('/booking/store', '\App\Http\Controllers\Admin\BookingsController1@store')->name('bookings.store');
-        
-        Route::get('/room', '\App\Http\Controllers\Admin\RoomController@index')->name('admin.room');
-        Route::get('/room/form', '\App\Http\Controllers\Admin\RoomController@create')->name('admin.form');
-        Route::get('/room/{id}',  '\App\Http\Controllers\Admin\RoomController@show')->name('admin.detail');
+
+        Route::post('/hotel/store', '\App\Http\Controllers\Admin\RoomController@store')->name('room.store');
+        Route::get('/hotel', '\App\Http\Controllers\Admin\RoomController@index')->name('room');
+        Route::get('/hotel/create', '\App\Http\Controllers\Admin\RoomController@create')->name('room.create');
+        Route::post('/hotel/create', '\App\Http\Controllers\Admin\RoomController@store')->name('room.store');
+        Route::get('/hotel/{id}/edit',  '\App\Http\Controllers\Admin\RoomController@edit')->name('room.edit');
+        Route::post('/hotel/{id}/edit',  '\App\Http\Controllers\Admin\RoomController@update')->name('room.update');
+        Route::get('/hotel/{id}/delete',  '\App\Http\Controllers\Admin\RoomController@destroy')->name('room.delete');
+        Route::get('/hotel/{id}',  '\App\Http\Controllers\Admin\RoomController@show')->name('room.detail');
         // Route::get('/{path?}', function($path = null){
         //     return View::make('admin.index');
         // })->where('path', '.*');

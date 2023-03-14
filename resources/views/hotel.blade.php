@@ -98,10 +98,10 @@
             </div>
             <div class="col-lg-9">
                 <div class="row">
-                    <div class="col-md-4 ftco-animate">
                         @foreach($hotels as $hotel)
+                    <div class="col-md-4 ftco-animate">
                         <div class="destination">
-                            <a href="{{ route('hotel.detail', ['id' => $hotel->id]) }}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/hotel-1.jpg);">
+                            <a href="{{ route('hotel.detail', ['id' => $hotel->id]) }}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url({{ asset('images/product/'.$hotel->img )}});">
                                 <div class="icon d-flex justify-content-center align-items-center">
                                     <span class="icon-search2"></span>
                                 </div>
@@ -131,8 +131,8 @@
                             </div>
 
                         </div>
-                        @endforeach
                     </div>
+                        @endforeach
 
                 </div> <!-- .col-md-8 -->
             </div>
