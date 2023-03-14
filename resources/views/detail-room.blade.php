@@ -104,7 +104,7 @@
           					<div class="hotel-img"><img class="hotel-img" src="{{ asset('images/product/' . $hotels->img) }}" alt="{{ $hotels->name }} "></div>
           				</div>
           				<div class="item">
-          					<div class="hotel-img" style="background-image: url(bg_5.jpg);"></div>
+          					<div class="hotel-img" style="background-image: url(images/bg_5.jpg);"></div>
           				</div>
           				<div class="item">
           					<div class="hotel-img" style="background-image: url(images/hotel-4.jpg);"></div>
