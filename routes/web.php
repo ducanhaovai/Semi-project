@@ -26,10 +26,9 @@ Route::post('/login_url', [HomeController::class, 'postLogin'])->name('postLogin
 
 Route::post('/logout', [HomeController::class, 'logout'])->name('logout');
 
-Route::get('/login-user', [HomeController::class, 'loginuser'])->name('login-user');
 Route::post('/register_url', [HomeController::class, 'store'])->name('auth.register');
 
-
+route::get('/users/{id}', [HomeController::class, 'detialUser'])->name('user.detail');
 route::get('/hotels/{id}', [HomeController::class, 'detialRoom'])->name('hotel.detail');
 
 Route::get('/hotel', [HomeController::class, 'hotel'])->name('hotel');
@@ -37,8 +36,8 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/user', [HomeController::class, 'user'])->name('user');
 
-
-
+Route::post('/acc-update-success', [HomeController::class, 'update'])->name('acc.edit');
+Route::post('/change-password', [HomeController::class, 'updatePassword'])->name('update-password');
 Route::get('/room', '\App\Http\Controllers\Admin\RoomController@index')->name('admin.room');
 
 

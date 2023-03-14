@@ -23,7 +23,7 @@
 
 
 
-                <li class="nav-item cta"><a href="{{route('login')}}" class="nav-link"><span>Welcome, {{ auth()->user()->name }}!</span></a></li>
+                <li class="nav-item cta"><a href="{{route('user.detail', ['id' => auth()->user()->id])}}" class="nav-link"><span>Welcome, {{ auth()->user()->name }}!</span></a></li>
 
             </ul>
         </div>
