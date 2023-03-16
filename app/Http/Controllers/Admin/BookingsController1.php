@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Hotel;
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use Illuminate\Support\Facades\Session;
 
 use App\Models\User;
 
@@ -17,7 +18,7 @@ class BookingsController1 extends Controller
         $roomAvailable = true;
         $bookings = Booking::all();
 
-        return view('admin.room.list_booking', compact('bookings'));
+        return view('admin.room.list-booking', compact('bookings'));
     }
 
     /**
@@ -47,12 +48,12 @@ class BookingsController1 extends Controller
         $roomAvailable = $this->isRoomAvailable($validatedData['hotel_id'], $validatedData['checkin_date'], $validatedData['checkout_date']);
 
         if (!$roomAvailable) {
-            return redirect()->back()->withErrors(['message' => 'Sorry, the room is not available for the selected dates.']);
+            return redirect()->back()->withErrors(['message' , 'Sorry, the room is not available for the selected dates.']);
         }
 
         $booking = Booking::create($validatedData);
 
-        return redirect()->route('admin.room.list_booking', $booking);
+        return redirect()->route('admin.room.list-booking', $booking);
     }
 
     private function isRoomAvailable($hotelId, $checkinDate, $checkoutDate)

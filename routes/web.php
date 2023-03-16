@@ -46,7 +46,7 @@ Route::group(
     function () {
         // Route::get("/", "TwoFaceAuthsController@index")->name("2fa_setting");
         Route::get('/index', '\App\Http\Controllers\Admin\AdminController@index')->name('admin.index');
-        Route::get('/index1', '\App\Http\Controllers\Admin\BookingsController1@index')->name('admin.index1');
+        Route::get('/index1', '\App\Http\Controllers\Admin\BookingsController1@index')->name('admin.listBookings');
 
         Route::post('/booking/store', '\App\Http\Controllers\Admin\BookingsController1@store')->name('bookings.store');
 

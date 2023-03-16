@@ -59,6 +59,7 @@
                                 @if ($roomAvailable)
                                     <button type="submit">Book Now</button>
                                 @else
+                                {{ session()->get('message') }}
                                     <button disabled>Booked Room</button>
                                 @endif
                             </div>

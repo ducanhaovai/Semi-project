@@ -22,4 +22,14 @@ class Hotel extends Model
     {
         return $this->hasMany(Booking::class);
     }
+
+    protected $table='hotels';
+
+    protected $primaryKey = 'id';
+
+    public function hotels(){
+        return $this->hasMany('App\Models\Room');
+    }
+
+    
 }

@@ -9,7 +9,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <a style="float: right; border: 1px solid #cccc; border-radius:5%; padding:5px; margin-bottom:5px" href="{{ route('admin.form') }}"><i class="fas fa-fw fa-plus"></i> Add New </a>
+                <a style="float: right; border: 1px solid #cccc; border-radius:5%; padding:5px; margin-bottom:5px" href=""><i class="fas fa-fw fa-plus"></i> Add New </a>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     
                     <thead>
@@ -31,7 +31,7 @@
 
                             <td ><img  src="" alt=" " height="200"></td>
                             <td>{{ $booking->user->name }}</td>
-                            <td>$booking->hotel->name</td>
+                            <td>{{$booking->hotel->name}}</td>
                             <td>{{ $booking->checkin_date }}</td>
                             <td>{{ $booking->checkout_date }}</td>
                         </tr>

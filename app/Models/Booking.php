@@ -10,16 +10,16 @@ class Booking extends Model
     use HasFactory;
 
     protected $fillable = [
-        'customer_id',
+        'user_id',
         'hotel_id',
-        'tour_id',
+        
         'checkin_date',
         'checkout_date',
     ];
 
     public function user()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(User::class);
     }
 
     public function hotel()
