@@ -39,6 +39,7 @@ Route::get('/user', [HomeController::class, 'user'])->name('user');
 Route::post('/acc-update-success', [HomeController::class, 'update'])->name('acc.edit');
 Route::post('/change-password', [HomeController::class, 'updatePassword'])->name('update-password');
 Route::get('/room', '\App\Http\Controllers\Admin\RoomController@index')->name('admin.room');
+Route::post('/search', [HomeController::class, 'search'])->name('search.hotel');
 
 
 Route::group(
@@ -71,5 +72,6 @@ Route::group(
         // Route::get('/{path?}', function($path = null){
         //     return View::make('admin.index');
         // })->where('path', '.*');
+       
     }
 );

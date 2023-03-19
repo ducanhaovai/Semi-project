@@ -9,10 +9,11 @@
           <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><strong>Explore <br></strong> your amazing city</h1>
           <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Find great places to stay, eat, shop, or visit from local experts</p>
           <div class="block-17 my-4">
-            <form action="" method="post" class="d-block d-flex">
+            <form action="{{ route('search.hotel') }}" method="POST" class="d-block d-flex">
+              @csrf
               <div class="fields d-block d-flex">
                 <div class="textfield-search one-third">
-                    <input type="text" class="form-control" placeholder="Ex: food, service, hotel">
+                    <input type="text" class="form-control" name="keyWords" placeholder="Ex: food, service, hotel">
                 </div>
                 <div class="select-wrap one-third">
                   <div class="icon"><span class="ion-ios-arrow-down"></span></div>

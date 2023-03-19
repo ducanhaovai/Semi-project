@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Session;
 
 use App\Models\User;
 
-
 class BookingsController1 extends Controller
 {
     public function index()
