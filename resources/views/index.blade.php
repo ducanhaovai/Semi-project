@@ -57,7 +57,7 @@
             <div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-like"></span></div></div>
             <div class="media-body p-2 mt-2">
               <h3 class="heading mb-3">Travellers Love Us</h3>
-              <p>A small river named Duden flows by their place and supplies.</p>
+              <p>A small river named Duden flows by their place and supplie.</p>
             </div>
           </div>    
         </div>
@@ -75,7 +75,7 @@
             <div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-support"></span></div></div>
             <div class="media-body p-2 mt-2">
               <h3 class="heading mb-3">Our Dedicated Support</h3>
-              <p>A small river named Duden flows by their place and supplies.</p>
+              <p>A small river named Duden flows by their place and supplie.</p>
             </div>
           </div>      
         </div>
