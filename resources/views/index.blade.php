@@ -9,10 +9,11 @@
           <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><strong>Explore <br></strong> your amazing city</h1>
           <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Find great places to stay, eat, shop, or visit from local experts</p>
           <div class="block-17 my-4">
-            <form action="" method="post" class="d-block d-flex">
+            <form action="{{ route('search.hotel') }}" method="POST" class="d-block d-flex">
+              @csrf
               <div class="fields d-block d-flex">
                 <div class="textfield-search one-third">
-                    <input type="text" class="form-control" placeholder="Ex: food, service, hotel">
+                    <input type="text" class="form-control" name="keyWords" placeholder="Ex: food, service, hotel">
                 </div>
                 <div class="select-wrap one-third">
                   <div class="icon"><span class="ion-ios-arrow-down"></span></div>
@@ -21,7 +22,7 @@
                     <option value="">San Francisco USA</option>
                     <option value="">Berlin Germany</option>
                     <option value="">Lodon United Kingdom</option>
-                    <option value="">Paris Italy</option>
+                    <option value="">Paris Italy </option>
                   </select>
                 </div>
               </div>
@@ -57,7 +58,7 @@
             <div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-like"></span></div></div>
             <div class="media-body p-2 mt-2">
               <h3 class="heading mb-3">Travellers Love Us</h3>
-              <p>A small river named Duden flows by their place and supplies.</p>
+              <p>A small river named Duden flows by their place and supplie.</p>
             </div>
           </div>    
         </div>
@@ -66,7 +67,7 @@
             <div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-detective"></span></div></div>
             <div class="media-body p-2 mt-2">
               <h3 class="heading mb-3">Best Travel Agent</h3>
-              <p>A small river named Duden flows by their place and supplies.</p>
+              <p>A small river named Duden flows by their place .</p>
             </div>
           </div>      
         </div>

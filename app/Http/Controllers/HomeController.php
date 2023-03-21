@@ -168,5 +168,15 @@ class HomeController extends Controller
         $user->save();
 
         return redirect()->back()->with('success', 'Account details updated successfully!');
+
+    }
+    public function search (Request $request){
+        $search = $request-> keyWords;
+
+        $hotels = Hotel::query()
+        ->where('name','LIKE', "%{$search}%")->get();
+
+        return view ('hotel', compact('hotels'));
+
     }
 }
