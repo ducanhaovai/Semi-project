@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('des', 500)->nullable();
             $table->decimal('price', 22)->nullable()->default(0.00);
             $table->string('img');
+            $table->string('max_occupancy')->nullable();
             $table->unsignedBigInteger('hotel_id');
             $table->foreign('hotel_id')->references('id')->on('hotels');
             

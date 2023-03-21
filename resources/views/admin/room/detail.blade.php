@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800"><a href="{{ route('room') }}" class="btn btn-default"><i class="fas fa-fw fa-arrow-left"></i></a> Details Room</h1>
+    <h1 class="h3 mb-2 text-gray-800"><a href="{{ route('hotel-1') }}" class="btn btn-default"><i class="fas fa-fw fa-arrow-left"></i></a> Details Room</h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">

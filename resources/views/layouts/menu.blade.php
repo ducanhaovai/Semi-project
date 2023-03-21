@@ -11,7 +11,7 @@
                 <li class="nav-item active"><a href="{{route('index')}}" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="{{route('about')}}" class="nav-link">About</a></li>
 
-                <li class="nav-item"><a href="{{route('hotel')}}" class="nav-link">Hotels</a></li>
+                <li class="nav-item"><a href="{{route('hotel-1')}}" class="nav-link">Hotels</a></li>
 
                 <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact</a></li>
                 <li class="nav-item cta">

@@ -18,16 +18,13 @@ class Hotel extends Model
         'img'
     ];
 
-    public function bookings()
-    {
-        return $this->hasMany(Booking::class);
-    }
+    
 
     protected $table='hotels';
 
     protected $primaryKey = 'id';
 
-    public function hotels(){
+    public function room(){
         return $this->hasMany('App\Models\Room');
     }
 
