@@ -31,7 +31,7 @@ Route::post('/register_url', [HomeController::class, 'store'])->name('auth.regis
 route::get('/users/{id}', [HomeController::class, 'detialUser'])->name('user.detail');
 route::get('/hotels/{id}', [HomeController::class, 'detialRoom'])->name('hotel.detail');
 
-Route::get('/hotel', [HomeController::class, 'hotel'])->name('hotel');
+Route::get('/hotel', [HomeController::class, 'hotel'])->name('hotel-1');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/user', [HomeController::class, 'user'])->name('user');
@@ -51,14 +51,16 @@ Route::group(
         Route::post('/booking/store', '\App\Http\Controllers\Admin\BookingsController1@store')->name('bookings.store');
 
         
-        Route::get('/hotel', '\App\Http\Controllers\Admin\RoomController@index')->name('room');
-        Route::post('/hotel/store', '\App\Http\Controllers\Admin\RoomController@store')->name('room.store');
-        Route::get('/hotel/create', '\App\Http\Controllers\Admin\RoomController@create')->name('room.create');
-        Route::post('/hotel/create', '\App\Http\Controllers\Admin\RoomController@store')->name('room.store');
-        Route::get('/hotel/{id}/edit',  '\App\Http\Controllers\Admin\RoomController@edit')->name('room.edit');
-        Route::post('/hotel/{id}/edit',  '\App\Http\Controllers\Admin\RoomController@update')->name('room.update');
-        Route::get('/hotel/{id}/delete',  '\App\Http\Controllers\Admin\RoomController@destroy')->name('room.delete');
-        Route::get('/hotel/{id}',  '\App\Http\Controllers\Admin\RoomController@show')->name('room.detail');
+        Route::get('/hotel', '\App\Http\Controllers\Admin\RoomController@index')->name('hotel');
+        Route::get('/hotel/{id}/room', '\App\Http\Controllers\Admin\RoomController@room')->name('room');
+        Route::post('/hotel/{id}/add-room', '\App\Http\Controllers\Admin\RoomController@saveRoom')->name('hotels.save-room');
+        Route::post('/hotel/store', '\App\Http\Controllers\Admin\RoomController@store')->name('hotel.store');
+        Route::get('/hotel/create', '\App\Http\Controllers\Admin\RoomController@create')->name('hotel.create');
+        Route::post('/hotel/create', '\App\Http\Controllers\Admin\RoomController@store')->name('hotel.store');
+        Route::get('/hotel/{id}/edit',  '\App\Http\Controllers\Admin\RoomController@edit')->name('hotel.edit');
+        Route::post('/hotel/{id}/edit',  '\App\Http\Controllers\Admin\RoomController@update')->name('hotel.update');
+        Route::get('/hotel/{id}/delete',  '\App\Http\Controllers\Admin\RoomController@destroy')->name('hotel.delete');
+        Route::get('/hotel/{id}',  '\App\Http\Controllers\Admin\RoomController@show')->name('hotel.detail');
 
         Route::get('/users', '\App\Http\Controllers\Admin\UsersController@index')->name('users');
         Route::post('/users/store', '\App\Http\Controllers\Admin\UsersController@store')->name('users.store');

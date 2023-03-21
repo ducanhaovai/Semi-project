@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Hotel;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
@@ -129,6 +130,43 @@ class RoomController extends Controller
     {
         $room = Hotel::findOrFail($id);
         $room->delete();
-        return redirect()->route('room');
+        return redirect()->route('room')->withSuccess("Test");
     }
+
+    public function room($id)
+    {
+        // Get the hotel with the specified ID
+        $hotels = Hotel::findOrFail($id);
+
+        // Display a form to add a new room
+        return view('admin.room.room', compact('hotels'));
+    }
+
+    public function saveRoom(Request $request, $id)
+    {
+        // Get the hotel with the specified ID
+        $hotels = Hotel::findOrFail($id);
+
+        // Validate the input data
+        $data = $request->validate([
+            'name' => 'required',
+            'des' => 'required',
+            'price' => 'required|numeric',
+            'img' => 'required|image|mimes:jpg,jpeg,png|max:1000',
+            'max_occupancy' => 'required|integer',
+            
+        ]);
+
+        // Create a new room for the hotel
+        $rooms = new Room($data);
+        $rooms->hotel()->associate($hotels);
+        $rooms->save();
+
+        // Redirect to the hotel rooms page
+        return redirect()->route('admin.room.room', ['id' => $id])->with('success', 'Room added successfully.');
+    }
+
+    
+
+    
 }

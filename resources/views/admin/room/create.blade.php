@@ -10,7 +10,7 @@
             <div class="card-body">
                 <div class="sbp-preview">
                     <div class="sbp-preview-content">
-                        <form action="{{ route('room.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('hotel.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @include('admin.room.form')
 

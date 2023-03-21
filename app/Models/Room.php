@@ -13,9 +13,14 @@ class Room extends Model
 
     protected $primaryKey = 'id';
 
-    public function hotels(){
+    public function hotel(){
         return $this->belongsTo('App\Models\Hotel','hotel_id');
 
+    }
+
+    public function booking()
+    {
+        return $this->hasMany(Booking::class);
     }
 
     protected $fillable= [
