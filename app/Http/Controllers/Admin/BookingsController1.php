@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class BookingsController1 extends Controller
 {
@@ -17,6 +18,9 @@ class BookingsController1 extends Controller
     {
         $roomAvailable = true;
         $bookings = Booking::all();
+        if (Auth::user()->type=='user') {
+            $bookings = Booking::where('user_id',Auth::id())->get();
+        }
 
         return view('admin.room.list-booking', compact('bookings'));
     }
@@ -59,7 +63,7 @@ class BookingsController1 extends Controller
         // dd($validatedData);
         $booking = Booking::create($input);
 
-        return redirect()->route('hotel');
+        return redirect()->route('admin.listBookings');
     }
 
     private function isRoomAvailable($hotelId, $checkinDate, $checkoutDate)

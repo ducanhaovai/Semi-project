@@ -7,9 +7,10 @@ use App\Models\Hotel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Models\Room;
 use PHPUnit\Runner\Hook;
 
-class RoomController extends Controller
+class HotelController extends Controller
 {
     public function __construct()
     {
@@ -20,21 +21,21 @@ class RoomController extends Controller
     {
         $hotels = Hotel::all();
         $users = User::all();
-        return view('admin.room.list', compact('hotels', 'users'));
+        return view('admin.hotel.list', compact('hotels', 'users'));
     }
     // detail data by id
     public function show($id)
     {
         $hotel = Hotel::findOrFail($id);
-        return view('admin.room.detail', compact('hotel'));
+        return view('admin.hotel.detail', compact('hotel'));
     }
     // view form add data
     public function create()
     {
-        $roomAvailable = true;
+        $hotelAvailable = true;
         $hotels = Hotel::all();
         $users = User::all();
-        return view('admin.room.create', compact('hotels', 'users', 'roomAvailable'));
+        return view('admin.hotel.create', compact('hotels', 'users', 'hotelAvailable'));
     }
 
     // function to save data
@@ -74,7 +75,7 @@ class RoomController extends Controller
 
 
             $newHotel->save();
-            return redirect()->route('room')
+            return redirect()->route('admin.hotel')
                 ->with('success', 'Product created successfully.');
         }
     }
@@ -83,12 +84,12 @@ class RoomController extends Controller
     public function edit($id)
     {
         $hotel = Hotel::find($id);
-        return view('admin.room.edit', compact('hotel'));
+        return view('admin.hotel.edit', compact('hotel'));
     }
     // function to update data
     public function update(Request $request, $id)
     {
-        $room = Hotel::findOrFail($id);
+        $hotel = Hotel::findOrFail($id);
         $validator = Validator::make($request->all(), [
 
             'name' => 'required',
@@ -114,21 +115,21 @@ class RoomController extends Controller
             $file->move($path, $fileName);
         } else {
 
-            $fileName = $room->image;
+            $fileName = $hotel->image;
         }
 
         $input = $request->all();
 
         $input['img'] = $fileName;
 
-        $room->update($input);
-        return redirect()->route('room');
+        $hotel->update($input);
+        return redirect()->route('admin.hotel');
     }
     // function to update data by id
     public function destroy($id)
     {
-        $room = Hotel::findOrFail($id);
-        $room->delete();
-        return redirect()->route('room');
+        $hotel = Hotel::findOrFail($id);
+        $hotel->delete();
+        return redirect()->route('admin.hotel');
     }
 }

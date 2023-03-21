@@ -4,7 +4,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800"><a href="{{ route('room') }}" class="btn btn-default"><i class="fas fa-fw fa-arrow-left"></i></a> Update room</h1>
+        <h1 class="h3 mb-2 text-gray-800"><a href="{{ route('admin.hotel') }}" class="btn btn-default"><i class="fas fa-fw fa-arrow-left"></i></a> Update hotel</h1>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
@@ -16,11 +16,11 @@
                 </ul>
                 <div class="sbp-preview">
                     <div class="sbp-preview-content">
-                        <form action="{{ route('room.update',$room->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.hotel.update',$hotel->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @include('admin.room.form')
+                            @include('admin.hotel.form')
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="{{ route('room') }}" class="btn btn-warning">Cancel</a>
+                            <a href="{{ route('admin.hotel') }}" class="btn btn-warning">Cancel</a>
                         </form>
 
                     </div>

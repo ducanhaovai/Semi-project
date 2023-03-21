@@ -9,34 +9,36 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <a style="float: right; border: 1px solid #cccc; border-radius:5%; padding:5px; margin-bottom:5px" href="{{ route('hotel.create') }}"><i class="fas fa-fw fa-plus"></i> Add New </a>
+                <a style="float: right; border: 1px solid #cccc; border-radius:5%; padding:5px; margin-bottom:5px" href="{{ route('room.create') }}"><i class="fas fa-fw fa-plus"></i> Add New </a>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Hotel</th>
                             <th style="width:10%">Image</th>
                             <th>Price</th>
-                            <th>Address and Phone</th>
+                            <th>Max occupancy</th>
                             <th>Description</th>
                             <th>Action</th>
 
                         </tr>
                     </thead>
-                    @foreach ($hotels as $hotel)
+                    @foreach ($rooms as $room)
                     <tbody>
 
                         <tr>
-                            <td>{{ $hotel->name }}</td>
-                            <td><a href="{{ route('room', $hotel->id) }}"><img src="{{ asset('images/product/' . $hotel->img) }}" alt="{{ $hotel->name }} " height="200"></a></td>
+                            <td>{{ $room->name }}</td>
+                            <td>{{ $room->hotel->name }}</td>
+                            <td><a href="{{ route('room', $room->id) }}"><img src="{{ asset('images/rooms/' . $room->img) }}" alt="{{ $room->name }} " height="200"></a></td>
 
-                            <td>{{ $hotel->price }}</td>
-                            <td>{{ $hotel->address }}, {{ $hotel->phone }}</td>
-                            <td>{{ $hotel->des }}</td>
-                            <td><a href="{{ route('hotel.detail', $hotel->id) }}"><i class="fas fa-fw fa-eye"></i></a>
+                            <td>{{ $room->price }}</td>
+                            <td>{{ $room->max_occupancy }}</td>
+                            <td>{{ $room->des }}</td>
+                            <td><a href="{{ route('room.detail', $room->id) }}"><i class="fas fa-fw fa-eye"></i></a>
                                 <br>
-                                <a href="{{ route('hotel.edit', $hotel->id) }}"><i class="fas fa-fw fa-pen"></i></a>
+                                <a href="{{ route('room.edit', $room->id) }}"><i class="fas fa-fw fa-pen"></i></a>
                                 <br>
-                                <a href="{{ route('hotel.delete',$hotel->id) }}" onclick="return confirm('Are you sure?')"><i class="fas fa-fw fa-trash" style="color:red"></i></a>
+                                <a href="{{ route('room.delete',$room->id) }}" onclick="return confirm('Are you sure?')"><i class="fas fa-fw fa-trash" style="color:red"></i></a>
                             </td>
                         </tr>
 

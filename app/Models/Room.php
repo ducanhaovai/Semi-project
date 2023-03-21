@@ -24,7 +24,7 @@ class Room extends Model
     }
 
     protected $fillable= [
-        'name', 'des','price','img'
+        'name', 'des','price','img','hotel_id','max_occupancy'
     ];
 
 }

@@ -47,21 +47,28 @@ Route::group(
     function () {
         // Route::get("/", "TwoFaceAuthsController@index")->name("2fa_setting");
         Route::get('/index', '\App\Http\Controllers\Admin\AdminController@index')->name('admin.index');
-        Route::get('/index1', '\App\Http\Controllers\Admin\BookingsController1@index')->name('admin.listBookings');
+        Route::get('/list-booking', '\App\Http\Controllers\Admin\BookingsController1@index')->name('admin.listBookings');
 
         Route::post('/booking/store', '\App\Http\Controllers\Admin\BookingsController1@store')->name('bookings.store');
 
-        
-        Route::get('/hotel', '\App\Http\Controllers\Admin\RoomController@index')->name('hotel');
-        Route::get('/hotel/{id}/room', '\App\Http\Controllers\Admin\RoomController@room')->name('room');
-        Route::post('/hotel/{id}/add-room', '\App\Http\Controllers\Admin\RoomController@saveRoom')->name('hotels.save-room');
-        Route::post('/hotel/store', '\App\Http\Controllers\Admin\RoomController@store')->name('hotel.store');
-        Route::get('/hotel/create', '\App\Http\Controllers\Admin\RoomController@create')->name('hotel.create');
-        Route::post('/hotel/create', '\App\Http\Controllers\Admin\RoomController@store')->name('hotel.store');
-        Route::get('/hotel/{id}/edit',  '\App\Http\Controllers\Admin\RoomController@edit')->name('hotel.edit');
-        Route::post('/hotel/{id}/edit',  '\App\Http\Controllers\Admin\RoomController@update')->name('hotel.update');
-        Route::get('/hotel/{id}/delete',  '\App\Http\Controllers\Admin\RoomController@destroy')->name('hotel.delete');
-        Route::get('/hotel/{id}',  '\App\Http\Controllers\Admin\RoomController@show')->name('hotel.detail');
+
+        Route::get('/hotel', '\App\Http\Controllers\Admin\HotelController@index')->name('admin.hotel');
+        Route::post('/hotel/store', '\App\Http\Controllers\Admin\HotelController@store')->name('admin.hotel.store');
+        Route::get('/hotel/create', '\App\Http\Controllers\Admin\HotelController@create')->name('admin.hotel.create');
+        Route::post('/hotel/create', '\App\Http\Controllers\Admin\HotelController@store')->name('admin.hotel.store');
+        Route::get('/hotel/{id}/edit',  '\App\Http\Controllers\Admin\HotelController@edit')->name('admin.hotel.edit');
+        Route::post('/hotel/{id}/edit',  '\App\Http\Controllers\Admin\HotelController@update')->name('admin.hotel.update');
+        Route::get('/hotel/{id}/delete',  '\App\Http\Controllers\Admin\HotelController@destroy')->name('admin.hotel.delete');
+        Route::get('/hotel/{id}',  '\App\Http\Controllers\Admin\HotelController@show')->name('admin.hotel.detail');
+
+        Route::get('/room', '\App\Http\Controllers\Admin\RoomController@index')->name('room');
+        Route::post('/room/store', '\App\Http\Controllers\Admin\RoomController@store')->name('room.store');
+        Route::get('/room/create', '\App\Http\Controllers\Admin\RoomController@create')->name('room.create');
+        Route::post('/room/create', '\App\Http\Controllers\Admin\RoomController@store')->name('room.store');
+        Route::get('/room/{id}/edit',  '\App\Http\Controllers\Admin\RoomController@edit')->name('room.edit');
+        Route::post('/room/{id}/edit',  '\App\Http\Controllers\Admin\RoomController@update')->name('room.update');
+        Route::get('/room/{id}/delete',  '\App\Http\Controllers\Admin\RoomController@destroy')->name('room.delete');
+        Route::get('/room/{id}',  '\App\Http\Controllers\Admin\RoomController@show')->name('room.detail');
 
         Route::get('/users', '\App\Http\Controllers\Admin\UsersController@index')->name('users');
         Route::post('/users/store', '\App\Http\Controllers\Admin\UsersController@store')->name('users.store');

@@ -19,23 +19,22 @@ class RoomController extends Controller
     // list data
     public function index()
     {
+        $rooms = Room::all();
         $hotels = Hotel::all();
-        $users = User::all();
-        return view('admin.room.list', compact('hotels', 'users'));
+        return view('admin.room.list', compact('rooms', 'hotels'));
     }
     // detail data by id
     public function show($id)
     {
-        $hotel = Hotel::findOrFail($id);
-        return view('admin.room.detail', compact('hotel'));
+        $room = Room::findOrFail($id);
+        return view('admin.room.detail', compact('room'));
     }
     // view form add data
     public function create()
     {
-        $roomAvailable = true;
         $hotels = Hotel::all();
         $users = User::all();
-        return view('admin.room.create', compact('hotels', 'users', 'roomAvailable'));
+        return view('admin.room.create', compact('hotels', 'users'));
     }
 
     // function to save data
@@ -47,9 +46,8 @@ class RoomController extends Controller
                 'price' => 'required',
                 'img' => 'required|image|mimes:jpg,jpeg,png|max:1000',
                 'des' => 'required',
-                'address' => 'required'
-
-
+                'hotel_id' => 'required',
+                'max_occupancy' => 'required'
 
             ]);
             if ($validator->fails()) {
@@ -59,22 +57,15 @@ class RoomController extends Controller
             }
             if ($request->hasFile('img')) {
                 $file = $request->file('img');
-                $path = public_path('images/product');
+                $path = public_path('images/rooms');
                 $fileName = time() . '_' . $file->getClientOriginalName();
                 $file->move($path, $fileName);
             } else {
                 $fileName = 'noname.jpg';
             }
-            $newHotel = new Hotel();
-            $newHotel->name = $request->name;
-            $newHotel->price = $request->price;
-            $newHotel->img = $fileName;
-            $newHotel->phone = $request->phone;
-            $newHotel->des = $request->des;
-            $newHotel->address = $request->address;
-
-
-            $newHotel->save();
+            $input=$request->all();
+            $input['img']=$fileName;
+            Room::create($input);
             return redirect()->route('room')
                 ->with('success', 'Product created successfully.');
         }
@@ -83,19 +74,20 @@ class RoomController extends Controller
     // view form edit data by id
     public function edit($id)
     {
-        $hotel = Hotel::find($id);
-        return view('admin.room.edit', compact('hotel'));
+        $room = Room::find($id);
+        $hotels = Hotel::all();
+        return view('admin.room.edit', compact('room','hotels'));
     }
     // function to update data
     public function update(Request $request, $id)
     {
-        $room = Hotel::findOrFail($id);
+        $room = Room::findOrFail($id);
         $validator = Validator::make($request->all(), [
-
             'name' => 'required',
             'price' => 'required',
             'des' => 'required',
-            'address' => 'required'
+            'hotel_id' => 'required',
+            'max_occupancy' => 'required'
 
         ]);
 
@@ -110,12 +102,12 @@ class RoomController extends Controller
 
         if ($request->hasFile('img')) {
             $file = $request->file('img');
-            $path = public_path('images/product');
+            $path = public_path('images/rooms');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->move($path, $fileName);
         } else {
 
-            $fileName = $room->image;
+            $fileName = $room->img;
         }
 
         $input = $request->all();
@@ -128,7 +120,7 @@ class RoomController extends Controller
     // function to update data by id
     public function destroy($id)
     {
-        $room = Hotel::findOrFail($id);
+        $room = Room::findOrFail($id);
         $room->delete();
         return redirect()->route('room')->withSuccess("Test");
     }
