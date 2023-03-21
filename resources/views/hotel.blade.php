@@ -85,7 +85,7 @@
 
                                 <div class="d-flex">
                                     <div class="one">
-                                        <h3><a href="{{ route('detail-room') }}">{{$hotel->name}}</a></h3>
+                                        <h3><a href="{{ route('hotel.detail', ['id' => $hotel->id]) }}">{{$hotel->name}}</a></h3>
                                         <p class="rate">
 
                                         <p>Phone:{{$hotel->phone}}</p>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,7 @@ use \Illuminate\Support\Facades\Validator;
 use App\Models\Video;
 use App\Models\Hotel;
 use App\Models\User;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -86,8 +88,13 @@ class HomeController extends Controller
 
     public function hotel()
     {
-        $users = User::all();
-        $hotels = Hotel::all();
+        $booking=Booking::where('checkout_date','>=',Carbon::now()->format('Y-m-d 12:00:00'))->get();
+        $hotel_id=[];
+        foreach ($booking as $book) {
+            array_push($hotel_id,$book->hotel_id);
+        }
+        $hotels = Hotel::whereNotIn("id",$hotel_id)->get();
+        // dd($hotel_id);
         return view('hotel',  ['hotels' => $hotels]);
     }
 

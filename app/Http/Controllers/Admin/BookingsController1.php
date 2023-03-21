@@ -7,6 +7,7 @@ use App\Models\Hotel;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 use App\Models\User;
 
@@ -38,21 +39,27 @@ class BookingsController1 extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'user_id' => 'required|exists:users,id',
+            // 'user_id' => 'required|exists:users,id',
             'hotel_id' => 'required',
             'checkin_date' => 'required|date',
             'checkout_date' => 'required|date',
         ]);
-
+        if ($request->user_id == '') {
+            // dd('ấdf');
+            return redirect()->route('login');
+        }
         $roomAvailable = $this->isRoomAvailable($validatedData['hotel_id'], $validatedData['checkin_date'], $validatedData['checkout_date']);
 
         if (!$roomAvailable) {
-            return redirect()->back()->withErrors(['message' , 'Sorry, the room is not available for the selected dates.']);
+            return redirect()->back()->withErrors(['message', 'Sorry, the room is not available for the selected dates.']);
         }
+        $input=$request->all();
+        $input['checkin_date'] = Carbon::createFromFormat('m/d/Y', $input['checkin_date'])->format('Y-m-d 14:00:00');
+        $input['checkout_date'] = Carbon::createFromFormat('m/d/Y', $input['checkout_date'])->format('Y-m-d 12:00:00');
+        // dd($validatedData);
+        $booking = Booking::create($input);
 
-        $booking = Booking::create($validatedData);
-
-        return redirect()->route('admin.room.list-booking', $booking);
+        return redirect()->route('hotel');
     }
 
     private function isRoomAvailable($hotelId, $checkinDate, $checkoutDate)
