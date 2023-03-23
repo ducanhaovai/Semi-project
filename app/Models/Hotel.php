@@ -13,7 +13,7 @@ class Hotel extends Model
         'name',
         'address',
         'phone',
-        'price',
+        
         'des',
         'img'
     ];

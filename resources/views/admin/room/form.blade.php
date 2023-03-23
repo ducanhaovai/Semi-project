@@ -1,4 +1,13 @@
-
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="mb-3">
     <strong>Name</strong>
     <input class="form-control" id="exampleFormControlInput1" placeholder="Room name" name="name" value="{{ isset($room->id)?$room->name:'' }}" />

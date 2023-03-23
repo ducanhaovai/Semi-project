@@ -44,13 +44,10 @@ class HotelController extends Controller
         if ($request->isMethod('POST')) {
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
-                'price' => 'required',
-                'img' => 'required|image|mimes:jpg,jpeg,png|max:1000',
+                
+                'img' => 'required|image|mimes:jpg,jpeg,png|max:100000',
                 'des' => 'required',
                 'address' => 'required'
-
-
-
             ]);
             if ($validator->fails()) {
                 return redirect()->back()
@@ -67,7 +64,7 @@ class HotelController extends Controller
             }
             $newHotel = new Hotel();
             $newHotel->name = $request->name;
-            $newHotel->price = $request->price;
+            
             $newHotel->img = $fileName;
             $newHotel->phone = $request->phone;
             $newHotel->des = $request->des;

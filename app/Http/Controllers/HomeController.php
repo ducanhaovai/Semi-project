@@ -16,6 +16,7 @@ use \Illuminate\Support\Facades\Validator;
 use App\Models\Video;
 use App\Models\Hotel;
 use App\Models\User;
+use App\Models\Room;
 use Carbon\Carbon;
 
 class HomeController extends Controller
@@ -118,6 +119,7 @@ class HomeController extends Controller
     public function detialRoom($id)
     {
         $hotels = hotel::find($id);
+        $rooms=Room::where('hotel_id',$id)->get();
         return view('detail-room', compact('hotels'));
     }
 

@@ -11,7 +11,7 @@ class Booking extends Model
 
     protected $fillable = [
         'user_id',
-        'hotel_id',
+        'room_id',
         
         'checkin_date',
         'checkout_date',
@@ -24,7 +24,7 @@ class Booking extends Model
 
     public function room()
     {
-        return $this->belongsTo('App\Models\Room','hotel_id');
+        return $this->belongsTo(Room::class,'room_id');
     }
 
     public function payments()

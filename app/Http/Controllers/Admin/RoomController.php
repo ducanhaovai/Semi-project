@@ -44,7 +44,7 @@ class RoomController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'price' => 'required',
-                'img' => 'required|image|mimes:jpg,jpeg,png|max:1000',
+                'img' => 'required|image|mimes:jpg,jpeg,png|max:100000',
                 'des' => 'required',
                 'hotel_id' => 'required',
                 'max_occupancy' => 'required'

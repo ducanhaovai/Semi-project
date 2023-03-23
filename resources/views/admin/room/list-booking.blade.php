@@ -30,7 +30,7 @@
                         <tr>
                             <td>{{$booking->id}}</td>
 
-                            <td ><img  src="{{ asset('images/rooms/' . $booking->room->img) }}" alt=" " height="200"></td>
+                            <td ><img  src="{{  asset('images/rooms/' . $booking->room->img) }}" alt=" " height="200"></td>
                             <td>{{ $booking->user->name }}</td>
                             <td>{{$booking->room->name}}</td>
                             <td>{{ $booking->checkin_date }}</td>

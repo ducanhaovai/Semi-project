@@ -155,7 +155,7 @@
                             <p>{{ $hotels->des }}</p>
 
                         </div>
-                        <div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
+                        {{-- <div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                             <h4 class="mb-4">Take A Tour</h4>
                             <div class="block-16">
                                 <figure>
@@ -165,126 +165,89 @@
                                             class="icon-play"></span></a>
                                 </figure>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                             <h4 class="mb-4">Our Rooms</h4>
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="destination">
-                                        <a href="hotel-single.html" class="img img-2"
-                                            style="background-image: url('{{ asset('images/room-4.jpg') }}');"></a>
-                                        <div class="text p-3">
-                                            <div class="d-flex">
-                                                <div class="one">
-                                                    <h3><a href="hotel-single.html">Hotel, Italy</a></h3>
-                                                    <p class="rate">
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
+                                @foreach ($hotels->room as $room)
+                                    <div class="col-md-4">
+                                        <div class="destination">
+                                            <a href="hotel-single.html" class="img img-2"
+                                                style="background-image: url('{{ asset('images/rooms/' . $room->img) }}');"></a>
+                                            <div class="text p-3">
+                                                <div class="d-flex">
+                                                    <div class="one">
+                                                        <h3><a href="#">{{ $room->name }}</a></h3>
+                                                        <p class="rate">
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star"></i>
+                                                            <i class="icon-star-o"></i>
+                                                            <span>8 Rating</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="two">
+                                                        <span
+                                                            class="price per-price">{{ $room->price }}<br><small>/night</small></span>
+                                                    </div>
                                                 </div>
-                                                <div class="two">
-                                                    <span class="price per-price">$40<br><small>/night</small></span>
-                                                </div>
-                                            </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <hr>
-                                            <p class="bottom-area d-flex">
+                                                <p>{{ $room->des }}</p>
+                                                <hr>
+                                                {{-- <p class="bottom-area d-flex">
                                                 <span><i class="icon-map-o"></i> Miami, Fl</span>
-                                                <span class="ml-auto"><a href="#">Book Now</a></span>
-                                            </p>
+                                                <span class="ml-auto"><a href="#">Book</a></span>
+                                            </p> --}}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="destination">
-                                        <a href="hotel-single.html" class="img img-2"
-                                            style="background-image: url('{{ asset('images/room-5.jpg') }}');"></a>
-                                        <div class="text p-3">
-                                            <div class="d-flex">
-                                                <div class="one">
-                                                    <h3><a href="hotel-single.html">Hotel, Italy</a></h3>
-                                                    <p class="rate">
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
-                                                </div>
-                                                <div class="two">
-                                                    <span class="price per-price">$40<br><small>/night</small></span>
-                                                </div>
-                                            </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <hr>
-                                            <p class="bottom-area d-flex">
-                                                <span><i class="icon-map-o"></i> Miami, Fl</span>
-                                                <span class="ml-auto"><a href="#">Book Now</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="destination">
-                                        <a href="hotel-single.html" class="img img-2"
-                                            style="background-image: url('{{ asset('images/room-6.jpg') }}');"></a>
-                                        <div class="text p-3">
-                                            <div class="d-flex">
-                                                <div class="one">
-                                                    <h3><a href="hotel-single.html">Hotel, Italy</a></h3>
-                                                    <p class="rate">
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star"></i>
-                                                        <i class="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
-                                                </div>
-                                                <div class="two">
-                                                    <span class="price per-price">$40<br><small>/night</small></span>
-                                                </div>
-                                            </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <hr>
-                                            <p class="bottom-area d-flex">
-                                                <span><i class="icon-map-o"></i> Miami, Fl</span>
-                                                <span class="ml-auto"><a href="#">Book Now</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                             <h4 class="mb-5">Booking</h4>
                             <form action="{{ route('bookings.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <div class="fields">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
+                                                <select name="room_id" class="form-control">
+                                                    <option value="">---- Chọn phòng cần book ----</option>
+                                                    @foreach ($hotels->room as $room1)
+                                                        <option value="{{ $room1->id }}">{{ $room1->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
                                                 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-                                                <input type="hidden" name="hotel_id" value="{{ $hotels->id }}">
+                                                {{-- <input type="hidden" name="hotel_id" value="{{ $hotels->id }}"> --}}
                                                 <input disabled type="text" class="form-control" name="user_name"
-                                                    value="{{ Auth::user()->name??'' }}">
+                                                    value="{{ Auth::user()->name ?? '' }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" id="checkin_date" name="checkin_date" class="form-control"
-                                                    placeholder="Date from">
+                                                <input type="text" id="checkin_date" name="checkin_date"
+                                                    class="form-control" placeholder="Date from">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" id="checkin_date" name="checkout_date" class="form-control"
-                                                    placeholder="Date to">
+                                                <input type="text" id="checkin_date" name="checkout_date"
+                                                    class="form-control" placeholder="Date to">
                                             </div>
                                         </div>
                                         <div class="col-md-12">

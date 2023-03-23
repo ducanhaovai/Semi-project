@@ -21,7 +21,6 @@ class BookingsController1 extends Controller
         if (Auth::user()->type=='user') {
             $bookings = Booking::where('user_id',Auth::id())->get();
         }
-
         return view('admin.room.list-booking', compact('bookings'));
     }
 
@@ -42,9 +41,10 @@ class BookingsController1 extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $validatedData = $request->validate([
             // 'user_id' => 'required|exists:users,id',
-            'hotel_id' => 'required',
+            'room_id' => 'required',
             'checkin_date' => 'required|date',
             'checkout_date' => 'required|date',
         ]);
@@ -52,7 +52,7 @@ class BookingsController1 extends Controller
             // dd('ấdf');
             return redirect()->route('login');
         }
-        $roomAvailable = $this->isRoomAvailable($validatedData['hotel_id'], $validatedData['checkin_date'], $validatedData['checkout_date']);
+        $roomAvailable = $this->isRoomAvailable($validatedData['room_id'], $validatedData['checkin_date'], $validatedData['checkout_date']);
 
         if (!$roomAvailable) {
             return redirect()->back()->withErrors(['message', 'Sorry, the room is not available for the selected dates.']);
@@ -60,7 +60,7 @@ class BookingsController1 extends Controller
         $input=$request->all();
         $input['checkin_date'] = Carbon::createFromFormat('m/d/Y', $input['checkin_date'])->format('Y-m-d 14:00:00');
         $input['checkout_date'] = Carbon::createFromFormat('m/d/Y', $input['checkout_date'])->format('Y-m-d 12:00:00');
-        // dd($validatedData);
+        // dd($input);
         $booking = Booking::create($input);
 
         return redirect()->route('admin.listBookings');
@@ -68,7 +68,7 @@ class BookingsController1 extends Controller
 
     private function isRoomAvailable($hotelId, $checkinDate, $checkoutDate)
     {
-        $bookings = Booking::where('hotel_id', $hotelId)
+        $bookings = Booking::where('room_id', $hotelId)
             ->where(function ($query) use ($checkinDate, $checkoutDate) {
                 $query->whereBetween('checkin_date', [$checkinDate, $checkoutDate])
                     ->orWhereBetween('checkout_date', [$checkinDate, $checkoutDate]);
