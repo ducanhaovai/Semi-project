@@ -81,21 +81,36 @@ class HomeController extends Controller
         return view('index', compact('user'));
     }
 
-    public function detail_room()
+    public function detail_room($id)
     {
 
-        return view('detail-room');
+        $room = Room::findOrFail($id);
+        $booking=Booking::where('checkout_date','>=',Carbon::now()->format('Y-m-d 12:00:00'))->get();
+        $room_id=[];
+        foreach ($booking as $book) {
+            array_push($room_id,$book->room_id);
+        }
+        $isBooked=false;
+        if (in_array($room->id,$room_id)) {
+            $isBooked=true;
+        }
+        $room['isBooked']=$isBooked;
+        // dd($hotel_id);
+        return view('detail-room',  ['room' => $room]);
     }
 
+
+    public function booking(Request $request)
+    {
+        // dd($request->all());
+        $id=$request->room;
+        $room = Room::findOrFail($id);
+        // dd($hotel_id);
+        return view('booking',compact('room'));
+    }
     public function hotel()
     {
-        $booking=Booking::where('checkout_date','>=',Carbon::now()->format('Y-m-d 12:00:00'))->get();
-        $hotel_id=[];
-        foreach ($booking as $book) {
-            array_push($hotel_id,$book->hotel_id);
-        }
-        $hotels = Hotel::whereNotIn("id",$hotel_id)->get();
-        // dd($hotel_id);
+        $hotels = Hotel::all();
         return view('hotel',  ['hotels' => $hotels]);
     }
 
@@ -120,13 +135,26 @@ class HomeController extends Controller
     {
         $hotels = hotel::find($id);
         $rooms=Room::where('hotel_id',$id)->get();
-        return view('detail-room', compact('hotels'));
+        $booking=Booking::where('checkout_date','>=',Carbon::now()->format('Y-m-d 12:00:00'))->get();
+        $room_id=[];
+        foreach ($booking as $book) {
+            array_push($room_id,$book->room_id);
+        }
+        foreach ($rooms as $room) {
+            $isBooked=false;
+            if (in_array($room->id,$room_id)) {
+                $isBooked=true;
+            }
+            $room['isBooked']=$isBooked;
+        }
+        return view('detail-hotel', compact('hotels','rooms'));
     }
 
     public function detialUser($id)
     {
         $users = user::find($id);
-        return view('user-detail', compact('users'));
+        $bookings=Booking::where('user_id',$id)->get();
+        return view('user-detail', compact('users','bookings'));
     }
 
     public function updatePassword(Request $request)

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Hotel;
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Room;
+use App\Models\Payment;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 
@@ -41,10 +43,12 @@ class BookingsController1 extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        $input=$request->all();
+        // dd(Carbon::createFromFormat('m/d/Y', $input['checkin_date'])->diff(Carbon::createFromFormat('m/d/Y', $input['checkout_date']))->days);
         $validatedData = $request->validate([
             // 'user_id' => 'required|exists:users,id',
             'room_id' => 'required',
+            'payment_method' => 'required',
             'checkin_date' => 'required|date',
             'checkout_date' => 'required|date',
         ]);
@@ -57,13 +61,17 @@ class BookingsController1 extends Controller
         if (!$roomAvailable) {
             return redirect()->back()->withErrors(['message', 'Sorry, the room is not available for the selected dates.']);
         }
-        $input=$request->all();
         $input['checkin_date'] = Carbon::createFromFormat('m/d/Y', $input['checkin_date'])->format('Y-m-d 14:00:00');
         $input['checkout_date'] = Carbon::createFromFormat('m/d/Y', $input['checkout_date'])->format('Y-m-d 12:00:00');
         // dd($input);
         $booking = Booking::create($input);
-
-        return redirect()->route('admin.listBookings');
+        $room=Room::findOrFail($input['room_id']);
+        $payment=[];
+        $payment['booking_id']=$booking->id;
+        $payment['payment_method']=$booking->id;
+        $payment['amount']=(int)Carbon::createFromFormat('Y-m-d 14:00:00', $input['checkin_date'])->diff(Carbon::createFromFormat('Y-m-d 12:00:00', $input['checkout_date']))->days * (int)$room->price;
+        Payment::create($payment);
+        return redirect()->route('user.detail', ['id' => auth()->user()->id]);
     }
 
     private function isRoomAvailable($hotelId, $checkinDate, $checkoutDate)

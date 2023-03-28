@@ -20,7 +20,7 @@ Route::get('/', '\App\Http\Controllers\HomeController@index')->name('index');
 Route::group(['prefix' => 'user'], function () {
     Route::get('/detail', [HomeController::class, 'detail_room'])->name('detail-room');
 });
-
+Route::get('/register', [HomeController::class, 'login'])->name('register');
 Route::get('/login', [HomeController::class, 'login'])->name('login');
 Route::post('/login_url', [HomeController::class, 'postLogin'])->name('postLogin');
 
@@ -30,6 +30,8 @@ Route::post('/register_url', [HomeController::class, 'store'])->name('auth.regis
 
 route::get('/users/{id}', [HomeController::class, 'detialUser'])->name('user.detail');
 route::get('/hotels/{id}', [HomeController::class, 'detialRoom'])->name('hotel.detail');
+route::get('/room/{id}', [HomeController::class, 'detail_room'])->name('room_detail');
+route::get('/booking', [HomeController::class, 'booking'])->name('booking');
 
 Route::get('/hotel', [HomeController::class, 'hotel'])->name('hotel');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
@@ -47,7 +49,7 @@ Route::group(
     function () {
         // Route::get("/", "TwoFaceAuthsController@index")->name("2fa_setting");
         Route::get('/index', '\App\Http\Controllers\Admin\AdminController@index')->name('admin.index');
-        Route::get('/list-booking', '\App\Http\Controllers\Admin\BookingsController1@index')->name('admin.listBookings');
+        Route::get('/list-booking', '\App\Http\Controllers\Admin\BookingsController1@index')->name('admin.listBookings')->middleware('auth');
 
         Route::post('/booking/store', '\App\Http\Controllers\Admin\BookingsController1@store')->name('bookings.store');
 
