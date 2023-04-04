@@ -33,7 +33,7 @@
                                         <option value="">San Francisco USA</option>
                                         <option value="">Berlin Germany</option>
                                         <option value="">Lodon United Kingdom</option>
-                                        <option value="">Paris Italy</option>
+                                        <option value="">Paris Itali</option>
                                     </select>
                                 </div>
                             </div>
