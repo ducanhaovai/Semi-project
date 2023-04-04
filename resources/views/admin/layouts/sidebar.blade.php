@@ -58,6 +58,21 @@
         </div>
     </li>
     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities1"
+            aria-expanded="true" aria-controls="collapseUtilities1">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Users</span>
+        </a>
+        <div id="collapseUtilities1" class="collapse" aria-labelledby="headingUtilities1"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('users') }}"><i class="fas fa-fw fa-list"></i> List of Users</a>
+                <a class="collapse-item" href="{{ route('users.create') }}"><i class="fas fa-fw fa-plus"></i> Add New</a>
+                
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('admin.listBookings') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>Bookings</span>
