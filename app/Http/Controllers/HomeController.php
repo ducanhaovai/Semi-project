@@ -83,6 +83,7 @@ class HomeController extends Controller
 
     public function detail_room($id)
     {
+        
 
         $room = Room::findOrFail($id);
         $booking=Booking::where('checkout_date','>=',Carbon::now()->format('Y-m-d 12:00:00'))->get();
