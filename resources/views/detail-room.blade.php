@@ -119,8 +119,8 @@
                             <div class="single-slider owl-carousel">
                                 <div class="item">
                                     <div class="hotel-img"><img class="hotel-img"
-                                            src="{{ asset('images/product/' . $hotels->img) }}"
-                                            alt="{{ $hotels->name }} "></div>
+                                            src="{{ asset('images/rooms/' . $room->img) }}"
+                                            alt="{{ $room->name }} "></div>
                                 </div>
                                 <div class="item">
                                     <div class="hotel-img"><img class="hotel-img"
@@ -139,11 +139,11 @@
                             </div>
                         </div>
                         <div class="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
-                            <span>Phone:{{ $hotels->phone }}</span>
-                            <h2>{{ $hotels->name }}</h2>
+                            <span>Max_occupancy: {{ $room->max_occupancy }}</span>
+                            <h2>{{ $room->name }}</h2>
                             <p class="rate mb-5">
                                 <span class="loc"><a href="#"><i
-                                            class="icon-map"></i>{{ $hotels->address }}</a></span>
+                                            class="icon-map"></i>{{ $room->price }}</a></span>
                                 <span class="star">
                                     <i class="icon-star"></i>
                                     <i class="icon-star"></i>
@@ -152,7 +152,7 @@
                                     <i class="icon-star-o"></i>
                                     8 Rating</span>
                             </p>
-                            <p>{{ $hotels->des }}</p>
+                            <p>{{ $room->des }}</p>
 
                         </div>
                         {{-- <div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
@@ -166,44 +166,7 @@
                                 </figure>
                             </div>
                         </div> --}}
-                        <div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-                            <h4 class="mb-4">Our Rooms</h4>
-                            <div class="row">
-                                @foreach ($hotels->room as $room)
-                                    <div class="col-md-4">
-                                        <div class="destination">
-                                            <a href="hotel-single.html" class="img img-2"
-                                                style="background-image: url('{{ asset('images/rooms/' . $room->img) }}');"></a>
-                                            <div class="text p-3">
-                                                <div class="d-flex">
-                                                    <div class="one">
-                                                        <h3><a href="#">{{ $room->name }}</a></h3>
-                                                        <p class="rate">
-                                                            <i class="icon-star"></i>
-                                                            <i class="icon-star"></i>
-                                                            <i class="icon-star"></i>
-                                                            <i class="icon-star"></i>
-                                                            <i class="icon-star-o"></i>
-                                                            <span>8 Rating</span>
-                                                        </p>
-                                                    </div>
-                                                    <div class="two">
-                                                        <span
-                                                            class="price per-price">{{ $room->price }}<br><small>/night</small></span>
-                                                    </div>
-                                                </div>
-                                                <p>{{ $room->des }}</p>
-                                                <hr>
-                                                {{-- <p class="bottom-area d-flex">
-                                                <span><i class="icon-map-o"></i> Miami, Fl</span>
-                                                <span class="ml-auto"><a href="#">Book</a></span>
-                                            </p> --}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
+                       
                         <div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                             <h4 class="mb-5">Booking</h4>
                             <form action="{{ route('bookings.store') }}" method="POST" enctype="multipart/form-data">
@@ -224,9 +187,7 @@
                                             <div class="form-group">
                                                 <select name="room_id" class="form-control">
                                                     <option value="">---- Chọn phòng cần book ----</option>
-                                                    @foreach ($hotels->room as $room1)
-                                                        <option value="{{ $room1->id }}">{{ $room1->name }}</option>
-                                                    @endforeach
+                                                   
                                                 </select>
                                             </div>
                                         </div>
