@@ -90,7 +90,7 @@ class HotelController extends Controller
         $validator = Validator::make($request->all(), [
 
             'name' => 'required',
-            'price' => 'required',
+            
             'des' => 'required',
             'address' => 'required'
 
